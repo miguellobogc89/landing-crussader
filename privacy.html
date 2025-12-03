@@ -31,15 +31,14 @@
   <!-- Header -->
   <header class="sticky top-0 z-30 border-b border-slate-800/80 bg-slate-950/75 backdrop-blur">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
-<div class="flex items-center justify-center gap-3">
-  <div class="logo-mark-md"></div>
-  <div
-    class="bg-gradient-to-r from-violet-400 via-fuchsia-500 to-rose-400 bg-clip-text text-2xl font-semibold text-transparent"
-  >
-    Crussader
-  </div>
-</div>
-
+      <div class="flex items-center justify-center gap-3">
+        <div class="logo-mark-md"></div>
+        <div
+          class="bg-gradient-to-r from-violet-400 via-fuchsia-500 to-rose-400 bg-clip-text text-2xl font-semibold text-transparent"
+        >
+          Crussader
+        </div>
+      </div>
 
       <nav class="hidden items-center gap-6 text-sm font-medium text-slate-300 md:flex">
         <a href="index.html#producto" class="hover:text-white">Producto</a>
@@ -123,8 +122,29 @@
             </p>
           </section>
 
+          <!-- NUEVA SECCIÓN ESPECÍFICA GOOGLE / OAUTH -->
           <section>
-            <h2 class="text-base font-semibold text-slate-50">3. Finalidades y bases jurídicas</h2>
+            <h2 class="text-base font-semibold text-slate-50">3. Uso de APIs de Google</h2>
+            <p class="mt-2">
+              Cuando conectas tu cuenta de Google (por ejemplo, Google Business Profile) a Crussader,
+              utilizamos las APIs de Google únicamente para acceder a la información necesaria
+              para prestar el servicio. Esto puede incluir:
+            </p>
+            <ul class="mt-2 list-disc space-y-1 pl-5">
+              <li>Datos de tu ficha de empresa (nombre del negocio, identificadores de ubicación).</li>
+              <li>Reseñas publicadas en Google (texto, puntuación, fecha y datos básicos del perfil que la realizó).</li>
+              <li>Permisos y configuración asociados a tu cuenta conectada.</li>
+            </ul>
+            <p class="mt-2">
+              No accedemos a otros datos de tu cuenta de Google ajenos a la finalidad del servicio
+              (por ejemplo, contenido de Gmail, Drive o Calendar). Los tokens de acceso y actualización
+              proporcionados por Google se almacenan cifrados y se utilizan únicamente para sincronizar
+              tus reseñas y permitir el envío de respuestas desde Crussader.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-base font-semibold text-slate-50">4. Finalidades y bases jurídicas</h2>
             <p class="mt-2">
               Tratamos tus datos con las siguientes finalidades principales:
             </p>
@@ -142,7 +162,7 @@
           </section>
 
           <section>
-            <h2 class="text-base font-semibold text-slate-50">4. Conservación de los datos</h2>
+            <h2 class="text-base font-semibold text-slate-50">5. Conservación de los datos</h2>
             <p class="mt-2">
               Conservaremos tus datos mientras exista una relación activa (por ejemplo,
               mientras tengas cuenta o exista un contrato en vigor) y, posteriormente,
@@ -156,10 +176,11 @@
           </section>
 
           <section>
-            <h2 class="text-base font-semibold text-slate-50">5. Destinatarios y transferencias</h2>
+            <h2 class="text-base font-semibold text-slate-50">6. Destinatarios y transferencias</h2>
             <p class="mt-2">
               Podemos compartir datos con proveedores que nos ayudan a prestar el servicio
-              (alojamiento, analítica, soporte, herramientas de IA, etc.), siempre bajo contratos
+              (alojamiento, analítica, soporte, herramientas de IA, servicios de envío de correo,
+              integraciones con Google u otras plataformas), siempre bajo contratos
               que garantizan un nivel adecuado de protección y confidencialidad.
             </p>
             <p class="mt-2">
@@ -170,7 +191,7 @@
           </section>
 
           <section>
-            <h2 class="text-base font-semibold text-slate-50">6. Seguridad</h2>
+            <h2 class="text-base font-semibold text-slate-50">7. Seguridad</h2>
             <p class="mt-2">
               Aplicamos medidas técnicas y organizativas razonables para proteger tus datos,
               como cifrado en tránsito, control de accesos, políticas de mínimos privilegios
@@ -180,7 +201,7 @@
           </section>
 
           <section>
-            <h2 class="text-base font-semibold text-slate-50">7. Tus derechos</h2>
+            <h2 class="text-base font-semibold text-slate-50">8. Tus derechos y revocación de acceso</h2>
             <p class="mt-2">
               Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición,
               limitación del tratamiento y portabilidad, en los casos y con el alcance
@@ -188,6 +209,21 @@
               <a href="mailto:info@crussader.com" class="text-violet-300 underline hover:text-violet-200">
                 info@crussader.com
               </a>.
+            </p>
+            <p class="mt-2">
+              Si has conectado tu cuenta de Google, puedes revocar en cualquier momento
+              los permisos concedidos a Crussader desde la propia cuenta de Google,
+              accediendo a:
+              <a
+                href="https://myaccount.google.com/permissions"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-violet-300 underline hover:text-violet-200"
+              >
+                https://myaccount.google.com/permissions
+              </a>.
+              Una vez revocados los permisos, dejaremos de poder acceder a tus datos a través de las APIs de Google
+              y eliminaremos los tokens de acceso asociados en un plazo razonable.
             </p>
             <p class="mt-2">
               Para facilitar la gestión de solicitudes de supresión, hemos habilitado además
@@ -199,7 +235,7 @@
           </section>
 
           <section>
-            <h2 class="text-base font-semibold text-slate-50">8. Cambios en esta política</h2>
+            <h2 class="text-base font-semibold text-slate-50">9. Cambios en esta política</h2>
             <p class="mt-2">
               Podemos actualizar esta Política de privacidad para adaptarla a cambios legales
               o de funcionamiento del servicio. Cuando sea relevante, procuraremos informarte
