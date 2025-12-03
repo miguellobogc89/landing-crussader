@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Crussader — IA para responder y analizar reseñas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Crussader usa IA para contestar reseñas con tu voz de marca y analizar opiniones para detectar mejoras y oportunidades reales."
+  />
+  <meta property="og:title" content="Crussader — IA para responder y analizar reseñas" />
+  <meta
+    property="og:description"
+    content="Contestador inteligente de reseñas + analítica de opiniones para clínicas, restaurantes y negocios locales."
+  />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Fondo suave y gradientes */
+    body {
+      background: radial-gradient(circle at top, #1f2937 0, #020617 55%);
+    }
+
+    /* Animaciones de aparición en scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Sombra y borde para las cards principales */
+    .glass-card {
+      background: linear-gradient(to bottom right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.96));
+      border-radius: 1.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.85),
+        0 0 0 1px rgba(15, 23, 42, 1);
+    }
+
+    .badge-pill {
+      border-radius: 9999px;
+      background: radial-gradient(circle at top left, #8b5cf6, #ec4899);
+    }
+
+    /* Pequeño glow bajo el hero */
+    .hero-glow {
+      filter: blur(42px);
+      opacity: 0.7;
+    }
+
+    /* Scrollbar discreta en desktop (para los bloques de ejemplo) */
+    .scrollbar-thin::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background-color: rgba(148, 163, 184, 0.6);
+      border-radius: 9999px;
+    }
+    /* Logo como máscara con gradiente dentro */
+      .logo-mark-sm,
+      .logo-mark-md,
+      .logo-mark-lg {
+        background: linear-gradient(to right, #a855f7, #ec4899, #fb7185);
+        -webkit-mask: url("img/logo.svg") center / contain no-repeat;
+        mask: url("img/logo.svg") center / contain no-repeat;
+      }
+
+      .logo-mark-sm {
+        width: 1.75rem;  /* 28px aprox */
+        height: 1.75rem;
+      }
+
+      .logo-mark-md {
+        width: 2.25rem;  /* 36px */
+        height: 2.25rem;
+      }
+
+      .logo-mark-lg {
+        width: 2.5rem;   /* 40px */
+        height: 2.5rem;
+      }
+  </style>
+</head>
+<body class="min-h-screen text-slate-50 antialiased">
+  <!-- Header fijo -->
+  <header class="sticky top-0 z-30 border-b border-slate-800/80 bg-slate-950/75 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
+      <a href="index.html#top" class="flex items-center gap-3">
+        <div class="logo-mark-sm"></div>
+        <span
+          class="hidden bg-gradient-to-r from-violet-400 via-fuchsia-500 to-rose-400 bg-clip-text text-xl font-semibold text-transparent md:inline"
+        >
+          Crussader
+        </span>
+      </a>
+
+
+      <nav class="hidden items-center gap-6 text-sm font-medium text-slate-300 md:flex">
+        <a href="#producto" class="hover:text-white">Producto</a>
+        <a href="#analitica" class="hover:text-white">Análisis</a>
+        <a href="#como-funciona" class="hover:text-white">Cómo funciona</a>
+        <a href="#faq" class="hover:text-white">FAQ</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a
+          href="mailto:info@crussader.com?subject=Quiero%20probar%20Crussader"
+          class="hidden rounded-full border border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-200 hover:border-slate-400 hover:text-white md:inline-flex"
+        >
+          Hablar con nosotros
+        </a>
+        <a
+          href="https://app.crussader.com"
+          class="inline-flex items-center rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 px-4 py-1.5 text-xs font-semibold text-white shadow-lg shadow-violet-500/30 hover:brightness-110 md:px-5 md:py-2 md:text-sm"
+        >
+          Ir al panel
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="top" class="pb-20 pt-10 sm:pt-14 md:pt-20">
+    <section class="px-4">
+      <div class="mx-auto flex max-w-6xl flex-col gap-10 md:flex-row md:items-center">
+        <!-- Columna texto -->
+        <div class="reveal md:w-1/2">
+          <div class="inline-flex items-center gap-2 rounded-full bg-slate-900/80 px-3 py-1 text-xs text-slate-300 ring-1 ring-slate-700/60">
+            <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/15 text-[11px] text-emerald-300">
+              ★
+            </span>
+            <span>Contestador de reseñas + radar de oportunidades</span>
+          </div>
+
+          <h1 class="mt-5 text-balance text-4xl font-semibold leading-tight tracking-tight sm:text-5xl md:text-6xl">
+            Convierte tus reseñas
+            <span class="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-rose-400 bg-clip-text text-transparent">
+              en growth
+            </span>
+            , no en ruido.
+          </h1>
+
+          <p class="mt-4 max-w-xl text-balance text-sm text-slate-300 sm:text-base">
+            Crussader responde automáticamente tus reseñas con IA siguiendo tu voz de marca
+            y analiza miles de opiniones para detectar patrones, puntos de fuga y nuevas oportunidades
+            de negocio.
+          </p>
+
+          <div class="mt-6 flex flex-wrap items-center gap-3">
+            <a
+              href="mailto:info@crussader.com?subject=Demo%20Crussader"
+              class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/30 hover:brightness-110"
+            >
+              Solicitar una demo
+            </a>
+            <a
+              href="#producto"
+              class="inline-flex items-center justify-center rounded-full border border-slate-700 px-5 py-2 text-sm font-medium text-slate-200 hover:border-slate-400 hover:text-white"
+            >
+              Ver cómo contesta reseñas
+            </a>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center gap-3 text-xs text-slate-400">
+            <div class="flex items-center gap-2">
+              <span class="badge-pill inline-flex h-6 w-6 items-center justify-center text-[13px] text-white">GDPR</span>
+              <span>Cumplimiento RGPD y datos cifrados</span>
+            </div>
+            <span class="hidden h-1 w-1 rounded-full bg-slate-500 md:inline-block"></span>
+            <span class="flex items-center gap-2">
+              <span>⚡</span> Onboarding guiado para equipos pequeños y cadenas
+            </span>
+          </div>
+        </div>
+
+        <!-- Columna visual contestador -->
+        <div class="relative reveal md:w-1/2">
+          <div class="absolute inset-x-8 bottom-[-28px] hero-glow mx-auto h-28 rounded-full bg-violet-500/40"></div>
+
+          <div class="glass-card relative mx-auto max-w-lg p-5 sm:p-6">
+            <div class="mb-4 flex items-center justify-between gap-2">
+              <div>
+                <p class="text-xs font-medium uppercase tracking-[0.14em] text-violet-300/90">
+                  Contestador inteligente
+                </p>
+                <p class="mt-1 text-sm text-slate-300">Vista de reseña + respuesta propuesta</p>
+              </div>
+              <span class="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-3 py-1 text-[11px] font-medium text-emerald-300">
+                <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                Listo para publicar
+              </span>
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-2">
+              <!-- Reseña -->
+              <div class="rounded-xl border border-slate-700/80 bg-slate-900/80 p-3 text-xs sm:text-sm">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <div class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-800 text-[11px] font-semibold">
+                      LG
+                    </div>
+                    <div>
+                      <p class="text-xs font-semibold text-slate-100">Laura Gómez</p>
+                      <p class="text-[11px] text-slate-400">Hace 2 horas · Google</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-0.5 text-amber-300">
+                    ★★★★☆
+                  </div>
+                </div>
+                <p class="mt-3 text-[11px] leading-relaxed text-slate-200 sm:text-xs">
+                  “La atención ha sido excelente y el equipo muy profesional. Solo eché en falta
+                  que el horario fuera un poco más amplio por las tardes.”
+                </p>
+                <div class="mt-3 inline-flex items-center gap-1 rounded-full bg-amber-500/10 px-2.5 py-1 text-[10px] text-amber-200">
+                  Insight: oportunidad en horarios · “tardes”
+                </div>
+              </div>
+
+              <!-- Respuesta IA -->
+              <div class="flex flex-col rounded-xl border border-violet-500/60 bg-slate-900/70 p-3 text-xs sm:text-sm">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="inline-flex items-center gap-1 rounded-full bg-violet-500/15 px-2 py-1 text-[10px] font-medium text-violet-200">
+                    ✨ Respuesta propuesta
+                  </span>
+                  <span class="text-[10px] text-slate-400">Tono: cercano · Formalidad: media</span>
+                </div>
+                <p class="mt-2 text-[11px] leading-relaxed text-slate-50 sm:text-xs">
+                  Hola Laura, muchísimas gracias por compartir tu experiencia 🧡
+                  Nos alegra saber que te has sentido bien atendida por el equipo.
+                  Tomamos nota de tu comentario sobre el horario de tarde: estamos
+                  analizando ampliarlo para que os resulte más cómodo pedir cita.
+                  ¡Será un placer volver a verte pronto!
+                </p>
+                <div class="mt-3 flex flex-wrap items-center justify-between gap-2 text-[10px]">
+                  <div class="flex gap-2">
+                    <span class="inline-flex items-center gap-1 rounded-full bg-slate-800 px-2 py-1 text-slate-300">
+                      ✍️ Versión 1/3
+                    </span>
+                    <span class="inline-flex items-center gap-1 rounded-full bg-slate-800 px-2 py-1 text-slate-300">
+                      🔎 Sin datos sensibles
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    class="inline-flex items-center gap-1 rounded-full bg-emerald-500 px-3 py-1.5 text-[11px] font-semibold text-slate-950 hover:bg-emerald-400"
+                  >
+                    Publicar en Google
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 flex flex-wrap items-center justify-between gap-2 text-[10px] text-slate-400">
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span class="inline-flex h-5 items-center rounded-full bg-slate-900/80 px-2">
+                  📊 Insight: horario tarde
+                </span>
+                <span class="inline-flex h-5 items-center rounded-full bg-slate-900/80 px-2">
+                  💡 Oportunidad: ampliar franja 17–20h
+                </span>
+              </div>
+              <span class="text-[10px]">
+                Autoetiquetado: <strong class="text-slate-200">Servicio</strong> ·
+                Sentimiento <strong class="text-emerald-300">positivo</strong>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Producto: focus contestador -->
+    <section id="producto" class="mt-20 bg-slate-950/40 px-4 py-16">
+      <div class="mx-auto max-w-6xl reveal">
+        <div class="mx-auto max-w-3xl text-center">
+          <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
+            Contestador de reseñas que habla <span class="text-violet-300">como tu marca</span>
+          </h2>
+          <p class="mt-3 text-sm text-slate-300 sm:text-base">
+            No es un texto genérico. Crussader aprende tu tono, tu forma de pedir disculpas,
+            cómo ofreces una segunda oportunidad y hasta qué emojis usas… y lo aplica
+            desde la 1★ a la 5★.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-[1.3fr,1fr]">
+          <!-- Lista de capacidades -->
+          <div class="space-y-4">
+            <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+              <h3 class="text-base font-semibold text-slate-50">
+                🎚️ Ajustes finos de voz y política de respuestas
+              </h3>
+              <p class="mt-2 text-sm text-slate-300">
+                Define un perfil distinto para reseñas muy negativas, neutras o fans de la marca.
+                Marca frases prohibidas, temas sensibles y límites de caracteres por plataforma.
+              </p>
+              <ul class="mt-3 space-y-1.5 text-sm text-slate-300">
+                <li>• Tono (sereno, entusiasta, técnico, etc.)</li>
+                <li>• Nivel de formalidad y uso de emojis</li>
+                <li>• Firma dinámica según ubicación o equipo</li>
+                <li>• Reglas por estrellas y palabras clave</li>
+              </ul>
+            </div>
+
+            <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+              <h3 class="text-base font-semibold text-slate-50">
+                ⚡ Respuestas en segundos, listas para revisar y publicar
+              </h3>
+              <p class="mt-2 text-sm text-slate-300">
+                El panel genera varias versiones en paralelo, te sugiere una por defecto y
+                marca riesgos de privacidad antes de copiar o publicar.
+              </p>
+              <ul class="mt-3 space-y-1.5 text-sm text-slate-300">
+                <li>• Variantes múltiples por reseña</li>
+                <li>• Avisos de posibles datos sensibles</li>
+                <li>• Workflow manual o auto-publicación (cuando la API lo permita)</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Mini panel de reseñas -->
+          <div class="rounded-2xl border border-slate-800 bg-slate-950/90 p-4 text-xs text-slate-200">
+            <div class="mb-3 flex items-center justify-between">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.15em] text-violet-300">
+                Cola de reseñas
+              </p>
+              <span class="inline-flex items-center gap-1 rounded-full bg-slate-900 px-2 py-1 text-[11px]">
+                🔔 4 nuevas hoy
+              </span>
+            </div>
+            <div class="space-y-2 overflow-hidden rounded-xl border border-slate-800 bg-slate-950/80">
+              <div class="flex items-center justify-between border-b border-slate-800/80 px-3 py-2">
+                <div>
+                  <p class="text-[11px] font-medium">Clínica CentroSmile · Madrid</p>
+                  <p class="text-[10px] text-slate-400">Google · 3 reseñas pendientes</p>
+                </div>
+                <span class="inline-flex items-center gap-1 rounded-full bg-amber-500/10 px-2 py-1 text-[10px] text-amber-300">
+                  2 críticas · 1 neutra
+                </span>
+              </div>
+              <div class="max-h-44 space-y-1.5 overflow-auto p-2 scrollbar-thin">
+                <button
+                  type="button"
+                  class="flex w-full items-start justify-between gap-3 rounded-lg bg-slate-900 px-2.5 py-2 text-left hover:bg-slate-800/80"
+                >
+                  <div>
+                    <p class="text-[11px] font-medium text-slate-50">“No me cogían el teléfono…”</p>
+                    <p class="mt-0.5 text-[10px] text-slate-400">1★ · Crítica por atención</p>
+                  </div>
+                  <span class="rounded-full bg-rose-500/10 px-2 py-0.5 text-[10px] text-rose-300">Prioridad alta</span>
+                </button>
+
+                <button
+                  type="button"
+                  class="flex w-full items-start justify-between gap-3 rounded-lg px-2.5 py-2 text-left hover:bg-slate-800/80"
+                >
+                  <div>
+                    <p class="text-[11px] font-medium text-slate-50">“Buen trato, pero mucha espera”</p>
+                    <p class="mt-0.5 text-[10px] text-slate-400">3★ · Mejora de procesos</p>
+                  </div>
+                  <span class="rounded-full bg-amber-500/10 px-2 py-0.5 text-[10px] text-amber-200">Insight</span>
+                </button>
+
+                <button
+                  type="button"
+                  class="flex w-full items-start justify-between gap-3 rounded-lg px-2.5 py-2 text-left hover:bg-slate-800/80"
+                >
+                  <div>
+                    <p class="text-[11px] font-medium text-slate-50">“Equipo increíble, repetiré”</p>
+                    <p class="mt-0.5 text-[10px] text-slate-400">5★ · Fan de la marca</p>
+                  </div>
+                  <span class="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] text-emerald-300">Recomendar reseñas</span>
+                </button>
+              </div>
+              <div class="flex items-center justify-between border-t border-slate-800/80 px-3 py-2 text-[10px]">
+                <span class="text-slate-400">Tiempo medio de respuesta: <span class="text-slate-100">3m 18s</span></span>
+                <span class="text-slate-400">Tasa de respuesta: <span class="text-emerald-300">92%</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Análisis de reseñas -->
+    <section id="analitica" class="bg-slate-50 px-4 py-16 text-slate-900">
+      <div class="mx-auto max-w-6xl reveal">
+        <div class="grid gap-10 md:grid-cols-[1.2fr,1fr] md:items-center">
+          <div>
+            <h2 class="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+              Analítica de reseñas para decisiones, no solo para informes.
+            </h2>
+            <p class="mt-3 text-sm text-slate-600 sm:text-base">
+              Crussader agrupa y etiqueta automáticamente las reseñas por temas
+              (precio, atención, horarios, experiencia online…) y te muestra dónde
+              estás perdiendo tracción y dónde hay margen de crecimiento.
+            </p>
+            <div class="mt-6 grid gap-4 sm:grid-cols-2">
+              <div class="rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-sm">
+                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-violet-600">Oportunidades</p>
+                <p class="mt-2 text-sm font-semibold">Mapa de mejoras por tema</p>
+                <p class="mt-1 text-sm text-slate-600">
+                  Descubre qué temas generan más reseñas negativas y cuáles están llenos de fans para potenciar testimonios.
+                </p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-sm">
+                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-violet-600">Alertas</p>
+                <p class="mt-2 text-sm font-semibold">Señales tempranas</p>
+                <p class="mt-1 text-sm text-slate-600">
+                  Detecta caídas de rating, cambios de tono o nuevas quejas antes de que lleguen al equipo directivo.
+                </p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-sm">
+                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-violet-600">Comparativas</p>
+                <p class="mt-2 text-sm font-semibold">Ubicaciones y periodos</p>
+                <p class="mt-1 text-sm text-slate-600">
+                  Compara clínicas o locales entre sí y ve qué hace diferente a los top performers.
+                </p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-sm">
+                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-violet-600">Export</p>
+                <p class="mt-2 text-sm font-semibold">Datos listos para comité</p>
+                <p class="mt-1 text-sm text-slate-600">
+                  Exporta gráficos y KPIs clave para tus presentaciones sin perder contexto ni matices.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mini dashboard -->
+          <div class="rounded-2xl border border-slate-200 bg-white/90 p-4 text-xs text-slate-900 shadow-lg">
+            <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-violet-600">
+              Panel de análisis (ejemplo)
+            </p>
+            <div class="grid gap-3 sm:grid-cols-3">
+              <div class="rounded-xl bg-slate-900 px-3 py-3 text-slate-50">
+                <p class="text-[11px] text-slate-300">Rating medio</p>
+                <p class="mt-1 text-xl font-semibold">4,6★</p>
+                <p class="mt-1 text-[10px] text-emerald-300">+0,3 vs mes anterior</p>
+              </div>
+              <div class="rounded-xl bg-slate-900 px-3 py-3 text-slate-50">
+                <p class="text-[11px] text-slate-300">Reseñas / mes</p>
+                <p class="mt-1 text-xl font-semibold">182</p>
+                <p class="mt-1 text-[10px] text-emerald-300">+24% volumen</p>
+              </div>
+              <div class="rounded-xl bg-slate-900 px-3 py-3 text-slate-50">
+                <p class="text-[11px] text-slate-300">% respondidas</p>
+                <p class="mt-1 text-xl font-semibold">91%</p>
+                <p class="mt-1 text-[10px] text-emerald-300">Objetivo: 95%</p>
+              </div>
+            </div>
+
+            <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3">
+              <p class="text-[11px] font-semibold text-slate-700">Temas clave este mes</p>
+              <div class="mt-2 grid gap-2 sm:grid-cols-2">
+                <div class="rounded-lg bg-white p-2">
+                  <p class="text-[11px] font-medium text-slate-800">⏰ Horarios de atención</p>
+                  <p class="mt-0.5 text-[10px] text-slate-500">+18 reseñas mencionan “tarde” / “sábado”</p>
+                  <p class="mt-1 text-[10px] text-amber-600">
+                    Riesgo: saturación en última franja · Sugerencia: ampliar a 20:00
+                  </p>
+                </div>
+                <div class="rounded-lg bg-white p-2">
+                  <p class="text-[11px] font-medium text-slate-800">👥 Trato del equipo</p>
+                  <p class="mt-0.5 text-[10px] text-slate-500">+42 reseñas con menciones positivas</p>
+                  <p class="mt-1 text-[10px] text-emerald-700">
+                    Oportunidad: contenidos y testimonios con nombres del staff
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-3 flex items-center justify-between text-[10px] text-slate-600">
+              <span>Filtrado por: <strong>Clínicas dentales · España</strong></span>
+              <span>Periodo: <strong>Últimos 90 días</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cómo funciona -->
+    <section id="como-funciona" class="bg-slate-950 px-4 py-16">
+      <div class="mx-auto max-w-6xl reveal">
+        <div class="mx-auto max-w-3xl text-center">
+          <h2 class="text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">
+            De cero a contestar y analizar reseñas en tres pasos.
+          </h2>
+          <p class="mt-3 text-sm text-slate-300 sm:text-base">
+            Pensado para equipos pequeños, cadenas con varias ubicaciones y agencias
+            que gestionan reputación de terceros.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          <div class="relative rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+            <span class="absolute -top-3 left-5 inline-flex h-7 w-7 items-center justify-center rounded-full bg-slate-800 text-xs font-semibold text-slate-100">
+              1
+            </span>
+            <h3 class="mt-2 text-sm font-semibold text-slate-50">Conecta tus ubicaciones</h3>
+            <p class="mt-2 text-sm text-slate-300">
+              Vincula tus perfiles (Google, Meta…) y deja que Crussader importe
+              reseñas históricas para tener contexto desde el primer día.
+            </p>
+          </div>
+
+          <div class="relative rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+            <span class="absolute -top-3 left-5 inline-flex h-7 w-7 items-center justify-center rounded-full bg-slate-800 text-xs font-semibold text-slate-100">
+              2
+            </span>
+            <h3 class="mt-2 text-sm font-semibold text-slate-50">Define tu voz y reglas</h3>
+            <p class="mt-2 text-sm text-slate-300">
+              Ajusta tono, formalidad, emojis, firma y políticas: qué se puede prometer,
+              qué no y cómo manejar casos delicados.
+            </p>
+          </div>
+
+          <div class="relative rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+            <span class="absolute -top-3 left-5 inline-flex h-7 w-7 items-center justify-center rounded-full bg-slate-800 text-xs font-semibold text-slate-100">
+              3
+            </span>
+            <h3 class="mt-2 text-sm font-semibold text-slate-50">Responde y mide impacto</h3>
+            <p class="mt-2 text-sm text-slate-300">
+              Deja que la IA proponga respuestas, publica con un clic y sigue la
+              evolución de tu rating, tiempos de respuesta y nuevos insights.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ + CTA -->
+    <section id="faq" class="bg-slate-50 px-4 py-16 text-slate-900">
+      <div class="mx-auto max-w-5xl reveal">
+        <div class="grid gap-10 md:grid-cols-[1.3fr,1fr] md:items-start">
+          <div>
+            <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">
+              Preguntas frecuentes
+            </h2>
+            <div class="mt-6 space-y-4 text-sm">
+              <details class="group rounded-xl border border-slate-200 bg-white p-4">
+                <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-medium text-slate-900">
+                  ¿Las respuestas se publican solas?
+                  <span class="ml-3 text-slate-400 group-open:rotate-90 transition-transform">›</span>
+                </summary>
+                <p class="mt-2 text-sm text-slate-600">
+                  Puedes revisar y editar cada respuesta antes de publicarla, o
+                  configurar autopublicación para ciertos tipos de reseña cuando
+                  la integración lo permita. Tú decides el nivel de automatización.
+                </p>
+              </details>
+
+              <details class="group rounded-xl border border-slate-200 bg-white p-4">
+                <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-medium text-slate-900">
+                  ¿Cómo cuida Crussader la privacidad y el RGPD?
+                  <span class="ml-3 text-slate-400 group-open:rotate-90 transition-transform">›</span>
+                </summary>
+                <p class="mt-2 text-sm text-slate-600">
+                  Aplicamos filtros para evitar datos de salud, información sensible
+                  o detalles que no deban figurar en una reseña pública. Además,
+                  ciframos datos en tránsito y en reposo y respetamos tus políticas internas.
+                </p>
+              </details>
+
+              <details class="group rounded-xl border border-slate-200 bg-white p-4">
+                <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-medium text-slate-900">
+                  ¿Es útil si ya llevo tiempo respondiendo reseñas a mano?
+                  <span class="ml-3 text-slate-400 group-open:rotate-90 transition-transform">›</span>
+                </summary>
+                <p class="mt-2 text-sm text-slate-600">
+                  Sí: Crussader se apoya en tu histórico para entender tu estilo,
+                  mantiene la coherencia entre ubicaciones y libera tiempo al equipo
+                  para centrarse en los casos delicados y en acciones de mejora.
+                </p>
+              </details>
+
+              <details class="group rounded-xl border border-slate-200 bg-white p-4">
+                <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-medium text-slate-900">
+                  ¿Sirve solo para Google Reviews?
+                  <span class="ml-3 text-slate-400 group-open:rotate-90 transition-transform">›</span>
+                </summary>
+                <p class="mt-2 text-sm text-slate-600">
+                  El foco inicial es Google, pero el diseño está pensado para
+                  unificar reseñas y mensajes de otras plataformas oficiales
+                  (Facebook, Instagram, etc.) en un solo panel.
+                </p>
+              </details>
+            </div>
+          </div>
+
+          <div id="contacto" class="rounded-2xl border border-slate-200 bg-white p-5 shadow-md">
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-violet-600">
+              Hablemos
+            </p>
+            <h3 class="mt-2 text-lg font-semibold text-slate-900">
+              ¿Quieres ver cómo quedaría en tus propias reseñas?
+            </h3>
+            <p class="mt-2 text-sm text-slate-600">
+              En una breve sesión te enseñamos el contestador, el panel de análisis
+              y varios ejemplos reales de tu sector.
+            </p>
+            <div class="mt-4 space-y-2 text-sm">
+              <p>✉️ Escríbenos a:</p>
+              <a
+                href="mailto:info@crussader.com?subject=Quiero%20una%20demo%20de%20Crussader"
+                class="inline-flex items-center rounded-full bg-violet-600 px-4 py-2 text-sm font-semibold text-white hover:bg-violet-700"
+              >
+                info@crussader.com
+              </a>
+              <p class="mt-2 text-xs text-slate-500">
+                Cuéntanos brevemente tu sector, número de ubicaciones y qué te preocupa más
+                (tiempos de respuesta, rating, saturación del equipo, etc.).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-950">
+    <div class="mx-auto max-w-6xl px-4 py-10 text-center text-sm text-slate-400">
+      <div class="bg-gradient-to-r from-violet-400 via-fuchsia-500 to-rose-400 bg-clip-text text-2xl font-semibold text-transparent">
+        Crussader
+      </div>
+      <div class="mt-3 flex flex-wrap items-center justify-center gap-3">
+        <a href="terms.html" class="hover:text-slate-100">Términos de servicio</a>
+        <span>•</span>
+        <a href="privacy.html" class="hover:text-slate-100">Privacidad</a>
+        <span>•</span>
+        <a href="datacleaning.html" class="hover:text-slate-100">Eliminación de datos</a>
+        <span>•</span>
+        <a href="support.html" class="hover:text-slate-100">Soporte</a>
+        <span>•</span>
+        <a href="mailto:info@crussader.com" class="hover:text-slate-100">Contacto</a>
+      </div>
+      <p class="mt-2 text-xs text-slate-500">
+        © <span id="year"></span> Crussader. Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Animaciones en scroll -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const revealEls = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    revealEls.forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
