@@ -19,6 +19,8 @@
   <style>
     html {
       scroll-behavior: smooth;
+      /* ⬇️ Aumenta todo aprox. como un zoom 125% */
+      font-size: 20px;
     }
 
     /* Fondo suave y gradientes */
@@ -105,7 +107,6 @@
         </span>
       </a>
 
-
       <nav class="hidden items-center gap-6 text-sm font-medium text-slate-300 md:flex">
         <a href="#producto" class="hover:text-white">Producto</a>
         <a href="#analitica" class="hover:text-white">Análisis</a>
@@ -115,16 +116,10 @@
 
       <div class="flex items-center gap-2">
         <a
-          href="mailto:info@crussader.com?subject=Quiero%20probar%20Crussader"
-          class="hidden rounded-full border border-slate-700 px-3 py-1.5 text-xs font-medium text-slate-200 hover:border-slate-400 hover:text-white md:inline-flex"
-        >
-          Hablar con nosotros
-        </a>
-        <a
           href="https://app.crussader.com"
           class="inline-flex items-center rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 px-4 py-1.5 text-xs font-semibold text-white shadow-lg shadow-violet-500/30 hover:brightness-110 md:px-5 md:py-2 md:text-sm"
         >
-          Ir al panel
+          Acceder
         </a>
       </div>
     </div>
@@ -133,9 +128,9 @@
   <!-- Hero -->
   <main id="top" class="pb-20 pt-10 sm:pt-14 md:pt-20">
     <section class="px-4">
-      <div class="mx-auto flex max-w-6xl flex-col gap-10 md:flex-row md:items-center">
+      <div class="mx-auto flex max-w-6xl flex-col gap-10 lg:flex-row lg:items-center">
         <!-- Columna texto -->
-        <div class="reveal md:w-1/2">
+        <div class="reveal lg:w-1/2">
           <div class="inline-flex items-center gap-2 rounded-full bg-slate-900/80 px-3 py-1 text-xs text-slate-300 ring-1 ring-slate-700/60">
             <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/15 text-[11px] text-emerald-300">
               ★
@@ -159,10 +154,10 @@
 
           <div class="mt-6 flex flex-wrap items-center gap-3">
             <a
-              href="mailto:info@crussader.com?subject=Demo%20Crussader"
+              href="https://app.crussader.com"
               class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/30 hover:brightness-110"
             >
-              Solicitar una demo
+              Empieza gratis
             </a>
             <a
               href="#producto"
@@ -185,7 +180,7 @@
         </div>
 
         <!-- Columna visual contestador -->
-        <div class="relative reveal md:w-1/2">
+        <div class="relative reveal lg:w-1/2">
           <div class="absolute inset-x-8 bottom-[-28px] hero-glow mx-auto h-28 rounded-full bg-violet-500/40"></div>
 
           <div class="glass-card relative mx-auto max-w-lg p-5 sm:p-6">
@@ -602,26 +597,27 @@
 
           <div id="contacto" class="rounded-2xl border border-slate-200 bg-white p-5 shadow-md">
             <p class="text-xs font-semibold uppercase tracking-[0.18em] text-violet-600">
-              Hablemos
+              Acceso inmediato
             </p>
             <h3 class="mt-2 text-lg font-semibold text-slate-900">
-              ¿Quieres ver cómo quedaría en tus propias reseñas?
+              Empieza gratis con tus propias reseñas
             </h3>
             <p class="mt-2 text-sm text-slate-600">
-              En una breve sesión te enseñamos el contestador, el panel de análisis
-              y varios ejemplos reales de tu sector.
+              Crea tu cuenta, conecta tus ubicaciones y prueba Crussader sin compromiso.
+              Podrás ver el contestador y el panel de análisis trabajando sobre tu caso real.
             </p>
             <div class="mt-4 space-y-2 text-sm">
-              <p>✉️ Escríbenos a:</p>
               <a
-                href="mailto:info@crussader.com?subject=Quiero%20una%20demo%20de%20Crussader"
+                href="https://app.crussader.com"
                 class="inline-flex items-center rounded-full bg-violet-600 px-4 py-2 text-sm font-semibold text-white hover:bg-violet-700"
               >
-                info@crussader.com
+                Crear cuenta gratis
               </a>
               <p class="mt-2 text-xs text-slate-500">
-                Cuéntanos brevemente tu sector, número de ubicaciones y qué te preocupa más
-                (tiempos de respuesta, rating, saturación del equipo, etc.).
+                ¿Dudas o soporte? Escríbenos a
+                <a href="mailto:info@crussader.com" class="font-medium text-violet-600 hover:text-violet-700">
+                  info@crussader.com
+                </a>.
               </p>
             </div>
           </div>
